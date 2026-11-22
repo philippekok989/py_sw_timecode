@@ -35,3 +35,10 @@ unambiguous, which matters more here than lenient input.
 
 Comparing timecodes at different frame rates raises `ValueError` rather
 than guessing a conversion. Convert explicitly first.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
